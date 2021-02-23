@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema({
-    userName: {
+    username: {
         type: String,
         unique: true,
         required: true,
@@ -11,7 +11,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     thoughts: [
@@ -38,7 +37,7 @@ const UserSchema = new Schema({
 UserSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
-// create the Pizza model using the UserSchema
+// create the user model using the UserSchema
 const User = model('User', UserSchema);
 
 // export the User model
